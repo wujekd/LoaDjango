@@ -3,7 +3,7 @@ from .models import Profile
 from django.http import JsonResponse
 import random
 
-# Create your views here.
+
 
 
 def ajax(request):
