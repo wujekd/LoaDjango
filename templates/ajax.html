@@ -1,0 +1,57 @@
+<head>
+    <title>Ajax tut home page</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+
+<h1>List of live data</h1>
+
+<button id="getbtn">fetch</button>
+
+<div id="res"></div>
+
+<ul id="display">
+
+</ul>
+
+<div class="p-6 mb-4 bg-gray-200">
+        {% if request.user.is_authenticated %}
+          
+                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Download</button>
+
+        {% else %} 
+            <div class="flex">
+                <button style="background-color: red" class="p-5">Download!</button>
+                <h2 class="m-5">Log in to download samples!</h2>
+            </div>
+        {% endif %}
+</div>
+
+
+<script>
+
+    async function requestData() {
+        const resp = await fetch("{% url 'ajax:getData' %}");
+        const read = await resp.json();
+        let container = document.getElementById("display");
+        container.innerHTML = ""
+        let res = document.getElementById("res");
+        res.textContent = read.res
+        
+        for (profil of read.profiles){
+            console.log(profil)
+            const div = document.createElement("div");
+                const name = document.createElement("p");
+                name.textContent = profil.name; 
+                const bio = document.createElement("div");
+                bio.textContent = profil.bio;
+                div.appendChild(name);
+                div.appendChild(bio)
+                container.appendChild(div);
+        }
+    }
+
+    document.getElementById("getbtn").addEventListener("click", requestData);
+
+</script>
