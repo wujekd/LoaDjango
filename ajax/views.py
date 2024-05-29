@@ -2,6 +2,7 @@ from django.shortcuts import render
 from .models import Profile
 from django.http import JsonResponse
 import random
+import time
 
 
 
@@ -23,6 +24,8 @@ def getData(request):
         res = "not enough points"
     elif rand == 3:
         res = "already downloaded"
+        
+    time.sleep(2)
     
     return JsonResponse({
         "profiles": list(prof.values()),

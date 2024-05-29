@@ -1,14 +1,17 @@
 <head>
     <title>Ajax tut home page</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script src="https://cdn.tailwindcss.com"></script>
+    
     {% load static %}
+    {% load static tailwind_tags %}
+    {% tailwind_css %}
+
     <script src="{% static 'dlrequest.js' %}" defer></script>
 </head>
 
 
 
-<h1>List of live data</h1>
+<h1>List of live dataaa</h1>
 
 <button id="getbtn" class="m-3">fetch</button>
 
@@ -18,11 +21,13 @@
 
 </ul>
 
-<div id="dynamic" style="transition: opacity 0.45s ease-in-out" class="p-6 mb-4 bg-gray-200 m-5">
+<div class="p-6 mb-4 bg-gray-200 m-5">
+<div id="dynamic" style="transition: opacity 0.45s ease-in-out">
     <h2>Download div</h2>
      
                 <button id="dlbtn" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Download</button>
 
+</div>
 </div>
 
 

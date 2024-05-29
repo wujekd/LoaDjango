@@ -6,5 +6,5 @@ app_name = "ajax"
 urlpatterns = [
     path('', views.ajax, name = "index"),
     path("getProfiles/", views.getData, name ="getData"),
-    path("test/", views.test, name = "test")
+    path("test/", views.test, name = "test"),
 ]
