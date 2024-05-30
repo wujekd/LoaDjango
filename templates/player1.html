@@ -3,6 +3,7 @@
 
 
 {% block content %}
+<script src="{% static 'player1.js' %}" defer></script>
 <style>
     .vertext {
         writing-mode: vertical-rl;
@@ -11,20 +12,45 @@
     }
 </style>
 
+{% comment %} DATA DATA DATA  {% endcomment %}
+<div class="text-white border-white border-2 px-4 fixed top-3">
+    <span>45</span> ---- <span>34</span>
+</div>
 
 
+{% comment %} SAMPLES SAMPLES SAMMPLES {% endcomment %}
+{% for tune in tunes %}
+<div class="text-white flex border-white border-2">
+    <div class="p-4">
+    {{ tune.title }}
+    </div>
+    <div class="p-4">
+        test
+    </div>
+    <div class="p-4">
+        {% comment %} <audio controls>
+            <source src="{{ tune.file.url }}" type="audio/mpeg">
+            Your browser does not support the audio element.
+          </audio> {% endcomment %}
+        <button data-audio-url="{{ tune.file.url }}" class="pick-btn bg-teal-600 p-2">play</button>
+    </div>
 
-<div class="container fixed bottom-5 bg-black py-4 px-6 border-white border-4 rounded-2xl overflow-hidden">
-{% comment %} <div class="mb-6 text-center relative">
+</div>
+{% endfor %}
+
+
+<div id="player" class="container fixed bottom-4 bg-black py-4 px-6 border-white border-4 rounded-2xl overflow-hidden">
+    <audio src="" id="audioAPI"></audio>
+    {% comment %} <div class="mb-6 text-center relative">
     <svg class="h-6 w-6 text-white inline-block absolute left-0" fill="#ff56ff" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 124.512 124.512" xml:space="preserve" stroke="#ffffff"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <path d="M113.956,57.006l-97.4-56.2c-4-2.3-9,0.6-9,5.2v112.5c0,4.6,5,7.5,9,5.2l97.4-56.2 C117.956,65.105,117.956,59.306,113.956,57.006z"></path> </g> </g></svg>
     <h2 class="text-white inline-block font-medium text-sm uppercase tracking-wider">Now playing</h2>
 </div> {% endcomment %}
 <div class="flex justify-evenly mb-3">
     <div class="flex justif-evenly items-center">
-        <img src="{% static 'pics/album1.png' %}" alt="Cover Image" class="rounded h-40 mx-auto z-10" />
+        <img id="cover" src="{% static 'pics/album1.png' %}" alt="Cover Image" class="rounded h-40 mx-auto z-10" />
 <div class="px-7">
-        <h2 class="text-white text-center mt-3 text-xl font-medium uppercase tracking-wide">Title</h2>
-        <h3 class="text-gray-500 text-xl text-center leading-6 mb-6">Author</h3>
+        <h2 id="title" class="text-white text-center mt-3 text-xl font-medium uppercase tracking-wide">Title</h2>
+        <h3 id="author" class="text-gray-500 text-xl text-center leading-6 mb-6">Author</h3>
 </div>
     </div>
     {% comment %} VOLUMES VOLUMES VOLUMES VOLUMES {% endcomment %}
@@ -48,8 +74,8 @@
 
 </div>
 {% comment %} progress bar ÷ {% endcomment %}
-<div class="bg-red-100 rounded overflow-hidden">
-    <div style="width: 5%" class="bg-red-600 py-2"></div>
+<div id="progress-container" class="bg-red-100 rounded overflow-hidden">
+    <div id="progress" style="width: 5%" class="bg-red-600 py-2"></div>
 </div>
 
 {% comment %} times  {% endcomment %}
@@ -60,9 +86,9 @@
 
 {% comment %} controls {% endcomment %}
 <div class="flex">
-    <button class="mx-auto"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#ffffff"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M4 12H20M4 12L8 8M4 12L8 16" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg></button>
-    <button class="mx-auto"><svg width="17" height="17" viewBox="-3 0 28 28" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns" fill="#ffffff" stroke="#ffffff"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>play</title> <desc>Created with Sketch Beta.</desc> <defs> </defs> <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage"> <g id="Icon-Set-Filled" sketch:type="MSLayerGroup" transform="translate(-419.000000, -571.000000)" fill="#ffffff"> <path d="M440.415,583.554 L421.418,571.311 C420.291,570.704 419,570.767 419,572.946 L419,597.054 C419,599.046 420.385,599.36 421.418,598.689 L440.415,586.446 C441.197,585.647 441.197,584.353 440.415,583.554" id="play" sketch:type="MSShapeGroup"> </path> </g> </g> </g></svg></button>
-    <button class="mx-auto"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#ffffff" transform="rotate(180)"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" stroke="#CCCCCC" stroke-width="0.192"></g><g id="SVGRepo_iconCarrier"> <path d="M4 12H20M4 12L8 8M4 12L8 16" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg></button>
+    <button id="back-btn" class="mx-auto"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#ffffff"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M4 12H20M4 12L8 8M4 12L8 16" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg></button>
+    <button id="play-btn" class="mx-auto"><svg width="17" height="17" viewBox="-3 0 28 28" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns" fill="#ffffff" stroke="#ffffff"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>play</title> <desc>Created with Sketch Beta.</desc> <defs> </defs> <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage"> <g id="Icon-Set-Filled" sketch:type="MSLayerGroup" transform="translate(-419.000000, -571.000000)" fill="#ffffff"> <path d="M440.415,583.554 L421.418,571.311 C420.291,570.704 419,570.767 419,572.946 L419,597.054 C419,599.046 420.385,599.36 421.418,598.689 L440.415,586.446 C441.197,585.647 441.197,584.353 440.415,583.554" id="play" sketch:type="MSShapeGroup"> </path> </g> </g> </g></svg></button>
+    <button id="fwd-btn" class="mx-auto"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#ffffff" transform="rotate(180)"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" stroke="#CCCCCC" stroke-width="0.192"></g><g id="SVGRepo_iconCarrier"> <path d="M4 12H20M4 12L8 8M4 12L8 16" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg></button>
 
 </div>
 
