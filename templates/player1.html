@@ -10,14 +10,10 @@
         text-orientation: upright;
         z-index: 100;
     }
+
 </style>
 
-{% comment %} DATA DATA DATA  {% endcomment %}
-<div class="text-white border-white border-2 px-4 fixed top-3">
-    <span>45</span> ---- <span>34</span>
-</div>
-
-
+<div class="pb-20">
 {% comment %} SAMPLES SAMPLES SAMMPLES {% endcomment %}
 {% for tune in tunes %}
 <div class="text-white flex border-white border-2">
@@ -25,19 +21,19 @@
     {{ tune.title }}
     </div>
     <div class="p-4">
-        test
+    {{ tune.author }}
     </div>
     <div class="p-4">
         {% comment %} <audio controls>
             <source src="{{ tune.file.url }}" type="audio/mpeg">
             Your browser does not support the audio element.
           </audio> {% endcomment %}
-        <button data-audio-url="{{ tune.file.url }}" class="pick-btn bg-teal-600 p-2">▶</button>
+        <button data-audio-url="{{ tune.file.url }}" pic-url="{{ tune.pic.url }}" audio-name="{{ tune.title }}" author="{{ tune.author }}" class="pick-btn bg-teal-600 p-2">▶</button>
     </div>
 
 </div>
 {% endfor %}
-
+</div>
 
 <div id="player" class="container fixed bottom-4 bg-black py-4 px-6 border-white border-4 rounded-2xl overflow-hidden">
     <audio src="" id="audioAPI"></audio>
@@ -47,7 +43,7 @@
 </div> {% endcomment %}
 <div class="flex justify-evenly mb-3">
     <div class="flex justif-evenly items-center">
-        <img id="cover" src="{% static 'pics/album1.png' %}" alt="Cover Image" class="rounded h-40 mx-auto z-10" />
+        <img id="cover" src="" alt="Cover Image" class="rounded h-40 mx-auto z-10" />
 <div class="px-7">
         <h2 id="title" class="text-white text-center mt-3 text-xl font-medium uppercase tracking-wide">Title</h2>
         <h3 id="author" class="text-gray-500 text-xl text-center leading-6 mb-6">Author</h3>
@@ -64,8 +60,8 @@
     </div>
     <div class="flex w-1/6">
         <span class="vertext text-white">VOLUME</span>
-        <div class="bg-red-100 overflow-hidden rounded relative w-4 flex justify-center">
-            <div style="height: 34%" class="bg-red-600 px-2 absolute bottom-0"></div>
+        <div id="volume-container" class="bg-red-100 overflow-hidden rounded relative w-4">
+            <div id="volume" style="height: 100%" class="bg-red-600 px-2 absolute bottom-0"></div>
         </div>
     </div>
     </div>
@@ -75,7 +71,7 @@
 </div>
 {% comment %} progress bar ÷ {% endcomment %}
 <div id="progress-container" class="bg-red-100 rounded overflow-hidden">
-    <div id="progress" style="width: 5%" class="bg-red-600 py-2"></div>
+    <div id="progress" style="width: 0%" class="bg-red-600 py-2"></div>
 </div>
 
 {% comment %} times  {% endcomment %}
