@@ -12,3 +12,27 @@ class Tunes(models.Model):
     
     def __str__(self):
         return f"{self.title}"
+
+
+class Songs(models.Model):
+    title = models.CharField(max_length=30)
+    author = models.CharField(max_length=30)
+    info = models.TextField(max_length=150)
+    date = models.DateField(auto_now_add=True)
+    audio = models.FileField(upload_to='music')
+    pic = models.FileField(upload_to="music")
+    
+    def __str__(self):
+        return f"{self.title}"
+    
+class SongResposes(models.Model):
+    title = models.CharField(max_length=30)
+    author = models.CharField(max_length=30)
+    info = models.TextField(max_length=150)
+    date = models.DateField(auto_now_add=True)
+    audio = models.FileField(upload_to='music')
+    song = models.ForeignKey(Songs, on_delete=models.CASCADE)
+    
+    def __str__(self):
+        return f"{self.title}"
+    

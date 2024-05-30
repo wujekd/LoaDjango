@@ -45,7 +45,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-
         var playButtons = document.querySelectorAll('.pick-btn');
         playButtons.forEach(function(button) {
             button.addEventListener('click', function() {
