@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const backBtn = document.getElementById("back-btn");
     const fwdBtn = document.getElementById("fwd-btn");
     const audio = document.getElementById("audioAPI");
-    const progress = document.getElementById("progress");
+    const progSlider = document.getElementById("progress");
     const progressContainer = document.getElementById("progress-container");
     const title = document.getElementById("title");
     const author = document.getElementById("author");
@@ -74,39 +74,31 @@ document.addEventListener('DOMContentLoaded', function() {
                     cover.src = this.getAttribute('pic-url');
                     this.textContent = "⏸";
                 }
-
-                // button.textContent = "⏸"
-                // audio.pause();
-
-                // currentPlayingButton = this;
-                
-                // play(audioUrl)
             });
         });
 
+
+        
     playBtn.addEventListener('click', playBtnClick)
 
     audio.addEventListener("pause", ()=>{
         currentPlayingButton.textContent = "▶"
     })
 
+
     audio.addEventListener('timeupdate', updateProgress);
     function updateProgress(e) {
-        // console.log(e.srcElement.currentTime)
         const {duration, currentTime} = e.srcElement;
-        const progressPercent = (currentTime / duration) * 100;
-        progress.style.width = `${progressPercent}%`
+        const progress = (currentTime / duration);
+        progSlider.value = progress;
     }
 
-    progressContainer.addEventListener('click', setProgress);
-    function setProgress(e) {
-        const width = this.clientWidth
-        // console.log(width)
-        const clickX = e.offsetX
-        const duration = audio.duration;
-    
-        audio.currentTime = (clickX / width) * duration;
-    }
+
+    progSlider.addEventListener("input", ()=>{
+        duration = audio.duration;
+        audio.currentTime = duration * progSlider.value;
+    })
+
 
 
 
@@ -116,18 +108,6 @@ var source = audioContext.createMediaElementSource(audio);
 source.connect(gainNode);
 gainNode.connect(audioContext.destination);
 
-
-// volCont.addEventListener("click", setVolume)
-// function setVolume(e) {
-//     const height = this.clientHeight;
-//     const rect = this.getBoundingClientRect(); 
-//     const mouseY = e.clientY - rect.top;
-//     let value = (1 - (mouseY / height)) * 100; 
-//     value = Math.max(0, Math.min(100, value)); 
-//     console.log(value)
-//     vol.style.height = `${value}%`;
-//     gainNode.gain.value = value / 100;
-// }
 
 
 

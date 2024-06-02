@@ -99,7 +99,7 @@
 {% endfor %}
 </div>
 
-<div id="player" class="container fixed bottom-4 bg-black py-4 px-6 border-white border-4 rounded-2xl overflow-hidden">
+<div id="player" class="container fixed bottom-4 bg-black py-4 flex flex-col items-center px-6 border-white border-4 rounded-2xl overflow-hidden">
     <audio src="" id="audioAPI"></audio>
     {% comment %} <div class="mb-6 text-center relative">
     <svg class="h-6 w-6 text-white inline-block absolute left-0" fill="#ff56ff" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 124.512 124.512" xml:space="preserve" stroke="#ffffff"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <path d="M113.956,57.006l-97.4-56.2c-4-2.3-9,0.6-9,5.2v112.5c0,4.6,5,7.5,9,5.2l97.4-56.2 C117.956,65.105,117.956,59.306,113.956,57.006z"></path> </g> </g></svg>
@@ -138,19 +138,23 @@
     
 
 </div>
+
+
 {% comment %} progress bar ÷ {% endcomment %}
-<div id="progress-container" class="bg-red-100 rounded overflow-hidden">
+{% comment %} <div id="progress-container" class="bg-red-100 rounded overflow-hidden">
     <div id="progress" style="width: 0%" class="bg-red-600 py-2"></div>
-</div>
+</div> {% endcomment %}
+<input type="range" id="progress" min="0" max="1" value="0" step="0.01" class="range-slider w-full mb-3" oninput="updateSlider(this)">
+
 
 {% comment %} times  {% endcomment %}
-<div class="text-white flex justify-between text-sm tracking-wide mb-px">
+<div class="text-white flex justify-between w-full text-sm tracking-wide mb-px">
     <p>3:12</p>
     <p>5:14</p>
 </div>
 
 {% comment %} controls {% endcomment %}
-<div class="flex">
+<div class="flex w-full">
     <button id="back-btn" class="mx-auto"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#ffffff"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M4 12H20M4 12L8 8M4 12L8 16" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg></button>
     <button id="play-btn" class="mx-auto">
         <svg width="17" height="17" viewBox="-3 0 28 28" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns" fill="#ffffff" stroke="#ffffff"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>play</title> <desc>Created with Sketch Beta.</desc> <defs> </defs> <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage"> <g id="Icon-Set-Filled" sketch:type="MSLayerGroup" transform="translate(-419.000000, -571.000000)" fill="#ffffff"> <path d="M440.415,583.554 L421.418,571.311 C420.291,570.704 419,570.767 419,572.946 L419,597.054 C419,599.046 420.385,599.36 421.418,598.689 L440.415,586.446 C441.197,585.647 441.197,584.353 440.415,583.554" id="play" sketch:type="MSShapeGroup"> </path> </g> </g> </g></svg></button>
