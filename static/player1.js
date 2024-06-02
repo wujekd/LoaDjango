@@ -110,6 +110,8 @@ document.addEventListener('DOMContentLoaded', function() {
             // currentPlayingButton.textContent = "⏸";
             changeButtonText(currentPlayingButton, '⏸')
             cover.src = currentPlayingButton.getAttribute('pic-url');
+            title.textContent = currentPlayingButton.getAttribute("audio-name");
+            author.textContent = currentPlayingButton.getAttribute('author');
             
             play(nextUrl)
         }
