@@ -61,8 +61,8 @@ document.addEventListener('DOMContentLoaded', function() {
         button.addEventListener('click', function() {
 
             if (currentPlayingButton && currentPlayingButton !== this) {
-                // currentPlayingButton.textContent = "▶";
                 changeButtonText(currentPlayingButton, '▶')
+                currentPlayingButton.querySelector('div').style.width = `0%`
             }
             if (audio.src == new URL(audioUrl, window.location.href).href) {
                 if (playing == true) {
