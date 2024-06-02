@@ -74,10 +74,6 @@
     {{ tune.author }}
     </div>
     <div class="p-4">
-        {% comment %} <audio controls>
-            <source src="{{ tune.file.url }}" type="audio/mpeg">
-            Your browser does not support the audio element.
-          </audio> {% endcomment %}
         <button data-audio-url="{{ tune.file.url }}" pic-url="{{ tune.pic.url }}" audio-name="{{ tune.title }}" author="{{ tune.author }}" class="pick-btn bg-teal-600 p-2">▶</button>
     </div>
 
@@ -87,28 +83,25 @@
 
 <div id="player" class="container fixed bottom-4 bg-black py-4 flex flex-col items-center px-6 border-white border-4 rounded-2xl overflow-hidden">
     <audio src="" id="audioAPI"></audio>
-    {% comment %} <div class="mb-6 text-center relative">
-    <svg class="h-6 w-6 text-white inline-block absolute left-0" fill="#ff56ff" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 124.512 124.512" xml:space="preserve" stroke="#ffffff"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <path d="M113.956,57.006l-97.4-56.2c-4-2.3-9,0.6-9,5.2v112.5c0,4.6,5,7.5,9,5.2l97.4-56.2 C117.956,65.105,117.956,59.306,113.956,57.006z"></path> </g> </g></svg>
-    <h2 class="text-white inline-block font-medium text-sm uppercase tracking-wider">Now playing</h2>
-</div> {% endcomment %}
-<div class="flex justify-evenly mb-3">
-    <div class="flex justif-evenly items-center bg-red-400">
+
+<div class="flex justify-evenly w-full mb-3">
+    <div class="flex justif-evenly items-center w-full">
         <img id="cover" src="" alt="Cover Image" class="rounded h-40 w-40 mx-auto z-10" />
-<div class="px-7">
+<div class="px-7 w-full">
         <h2 id="title" class="text-white text-center mt-3 text-xl font-medium uppercase tracking-wide">Title</h2>
         <h3 id="author" class="text-gray-500 text-xl text-center leading-6 mb-6">Author</h3>
 </div>
     </div>
 
     {% comment %} VOLUMES VOLUMES VOLUMES VOLUMES {% endcomment %}
-<div class="flex items-center justify-center space-x-0 bg-gray-500">
+<div class="flex items-center justify-center space-x-0">
     {% comment %} <div class="flex w-1/6">
         <span class="vertext text-white">ORIGINAL</span>
         <div class="bg-red-100 overflow-hidden rounded relative w-4 flex justify-center">
             <div style="height: 54%" class="bg-red-600 px-2 absolute bottom-0"></div>
         </div>
     </div> {% endcomment %}
-    <div class="flex items-center bg-teal-300">
+    <div class="flex items-center">
         <span class="vertext text-white">VOLUME</span>
 
 
