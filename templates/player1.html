@@ -60,21 +60,6 @@
     </style>
     
 
-
-<input type="range" id="" min="0" max="2" value="1" step="0.01" class="range-slider" oninput="updateSlider(this)">
-<script>
-    function updateSlider(slider) {
-        const value = (slider.value - slider.min) / (slider.max - slider.min) * 100;
-        slider.style.setProperty('--range-progress', `${value}%`);
-    }
-
-    document.addEventListener('DOMContentLoaded', function() {
-        const sliders = document.querySelectorAll('.range-slider');
-        sliders.forEach(slider => {
-            updateSlider(slider);
-        });
-    });
-</script>
 {% comment %} <input type="range" id="volume" min="0" max="2" value="1" step="0.01" class="w-full h-2 bg-red-200 rounded-lg appearance-none cursor-pointer range-lg p-3 m-4" /> {% endcomment %}
 
 <div class="pb-20">
@@ -131,7 +116,7 @@
         </div> {% endcomment %}
 
     </div>
-    <input type="range" style="transform: rotate(-90deg); transform-origin: 50% 50%;" id="volume" min="0" max="1" value="1" step="0.01" class="range-slider w-1/2 bg-red-500" oninput="updateSlider(this)">
+    <input type="range" style="transform: rotate(-90deg); transform-origin: 50% 50%;" id="volume" min="0" max="1" value="1" step="0.01" class="range-slider w-1/2 bg-red-500">
 
     </div>
 
@@ -144,7 +129,7 @@
 {% comment %} <div id="progress-container" class="bg-red-100 rounded overflow-hidden">
     <div id="progress" style="width: 0%" class="bg-red-600 py-2"></div>
 </div> {% endcomment %}
-<input type="range" id="progress" min="0" max="1" value="0" step="0.01" class="range-slider w-full mb-3" oninput="updateSlider(this)">
+<input type="range" style="" id="progress" min="0" max="1" value="0" step="0.01" class="range-slider w-full mb-3">
 
 
 {% comment %} times  {% endcomment %}

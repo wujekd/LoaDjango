@@ -78,7 +78,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
 
 
-        
+
     playBtn.addEventListener('click', playBtnClick)
 
     audio.addEventListener("pause", ()=>{
@@ -88,13 +88,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
     audio.addEventListener('timeupdate', updateProgress);
     function updateProgress(e) {
+        
         const {duration, currentTime} = e.srcElement;
         const progress = (currentTime / duration);
         progSlider.value = progress;
+        updateSlider(progSlider);
     }
 
 
     progSlider.addEventListener("input", ()=>{
+        
         duration = audio.duration;
         audio.currentTime = duration * progSlider.value;
     })
@@ -110,10 +113,10 @@ gainNode.connect(audioContext.destination);
 
 
 
-
 vol.addEventListener(
     "input",
     function() {
+        updateSlider(this);
         gainNode.gain.value = vol.value;
     },
     false
@@ -121,5 +124,19 @@ vol.addEventListener(
 
 
 
-    });
+
+
+
+function updateSlider(slider) {
+    const value = (slider.value - slider.min) / (slider.max - slider.min) * 100;
+    slider.style.setProperty('--range-progress', `${value}%`);
+}
+
+const sliders = document.querySelectorAll('.range-slider');
+sliders.forEach(slider => {
+    updateSlider(slider);
+});
+
+
+});
 
