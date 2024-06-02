@@ -19,13 +19,13 @@
         --slider-track-color: #f69697; /* Unfilled track color */
         --slider-progress-color: #f01e2c; /* Filled track color */
         --slider-thumb-color: #d1001f; /* Thumb color */
+        --range-progress: 0%; /* Initial progress */
     }
     
     input[type="range"] {
         appearance: none;
-        {% comment %} width: 80%; {% endcomment %}
         height: 0.5rem;
-        background: linear-gradient(to right, var(--slider-progress-color) 0%, var(--slider-progress-color) var(--range-progress, 50%), var(--slider-track-color) var(--range-progress, 50%), var(--slider-track-color) 100%);
+        background: linear-gradient(to right, var(--slider-progress-color) 0%, var(--slider-progress-color) var(--range-progress, 0%), var(--slider-track-color) var(--range-progress, 0%), var(--slider-track-color) 100%);
         border-radius: 0.25rem;
         outline: none;
         transition: background 0.3s ease-in-out;
@@ -57,6 +57,7 @@
         border-radius: 50%;
         cursor: pointer;
     }
+    
     </style>
     
 
@@ -134,8 +135,8 @@
 
 {% comment %} times  {% endcomment %}
 <div class="text-white flex justify-between w-full text-sm tracking-wide mb-px">
-    <p>3:12</p>
-    <p>5:14</p>
+    <p id="current-time">3:12</p>
+    <p id="duration">5:14</p>
 </div>
 
 {% comment %} controls {% endcomment %}
