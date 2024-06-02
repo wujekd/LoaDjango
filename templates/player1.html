@@ -57,7 +57,8 @@
         border-radius: 50%;
         cursor: pointer;
     }
-    
+
+
     </style>
     
 
@@ -74,7 +75,12 @@
     {{ tune.author }}
     </div>
     <div class="p-4">
-        <button data-audio-url="{{ tune.file.url }}" pic-url="{{ tune.pic.url }}" audio-name="{{ tune.title }}" author="{{ tune.author }}" class="pick-btn bg-teal-600 p-2">▶</button>
+        <button data-audio-url="{{ tune.file.url }}" pic-url="{{ tune.pic.url }}" 
+        audio-name="{{ tune.title }}" author="{{ tune.author }}" 
+        class="pick-btn rounded-xl relative bg-teal-600 w-20 relative overflow-hidden">
+            <div style="width: 0%" class="absolute h-6 bg-red-600 py-2"></div>
+            <span class="btn-txt relative">▶</span>
+        </button>
     </div>
 
 </div>
