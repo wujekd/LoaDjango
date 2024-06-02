@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const title = document.getElementById("title");
     const author = document.getElementById("author");
     const cover = document.getElementById("cover");
-    const volCont = document.getElementById("volume-container");
+    // const volCont = document.getElementById("volume-container");
     const vol = document.getElementById("volume");
 
     let currentPlayingButton = null;
@@ -110,25 +110,34 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
-var audioContext = new (window.AudioContext || window.webkitAudioContext)();
+var audioContext = new AudioContext();
 var gainNode = audioContext.createGain();
 var source = audioContext.createMediaElementSource(audio);
 source.connect(gainNode);
 gainNode.connect(audioContext.destination);
 
 
-volCont.addEventListener("click", setVolume)
-function setVolume(e) {
-    const height = this.clientHeight;
-    const rect = this.getBoundingClientRect(); // Get the bounding rectangle of the element
-    const mouseY = e.clientY - rect.top; // Calculate the vertical distance from the top of the element to the mouse pointer
-    let value = (1 - (mouseY / height)) * 100; // Calculate the percentage and invert it
-    value = Math.max(0, Math.min(100, value)); // Ensure value is within 0 to 100 range
-    console.log(value)
-    vol.style.height = `${value}%`;
-    gainNode.gain.value = value / 100;
-}
+// volCont.addEventListener("click", setVolume)
+// function setVolume(e) {
+//     const height = this.clientHeight;
+//     const rect = this.getBoundingClientRect(); 
+//     const mouseY = e.clientY - rect.top;
+//     let value = (1 - (mouseY / height)) * 100; 
+//     value = Math.max(0, Math.min(100, value)); 
+//     console.log(value)
+//     vol.style.height = `${value}%`;
+//     gainNode.gain.value = value / 100;
+// }
 
+
+
+vol.addEventListener(
+    "input",
+    function() {
+        gainNode.gain.value = vol.value;
+    },
+    false
+);
 
 
 
