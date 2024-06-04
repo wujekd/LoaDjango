@@ -5,4 +5,3 @@ class ImgUploadForm(forms.ModelForm):
     class Meta:
         model = ImageUpload
         fields = ['image',]
-        

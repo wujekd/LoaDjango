@@ -4,7 +4,7 @@
 
 {% block content %}
 
-
+{% if songs %}
 {% for song in songs %}
 <div class="flex items-center">
 <h1 class="p-4">{{ song.title }}</h1>
@@ -15,5 +15,8 @@
 </ul>
 </div>
 {% endfor %}
+{% else %}
+<h2>No unapproved submissions</h2>
+{% endif %}
 
 {% endblock %}

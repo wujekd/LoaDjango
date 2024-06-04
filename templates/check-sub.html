@@ -5,11 +5,11 @@
 {% block content %}
 
 <script src="{% static 'check-sub.js' %}" defer></script>
-<audio src="{{ song.audio.url }}" id="backging"></audio>
+<audio src="{{ song.audio.url }}" id="backing"></audio>
 <audio src="{{ response.audio.url }}" id="submitted"></audio>
 
 <button id="play" class="border-white border-2 p-3">PLAY</button>
-
+<input type="range" id="progress" value="0" min="0" max="1" step="0.01">
 
 <div id="info">{{ form.volumeOffset.value }}</div>
 
@@ -22,13 +22,13 @@
         {{ form.volumeOffset.value }}
         {% else %}
         1
-        {% endif %}" min="0" max="2" step="0.1">
+        {% endif %}" min="0" max="2" step="0.01">
     </div>
-    <div>
+    <div class="p-2">
         <label for="id_approved">Approve:</label>
         <input type="checkbox" name="approved" id="id_approved" {% if form.approved.value %}checked{% endif %}>
     </div>
-    <button type="submit">Submit</button>
+    <button type="submit" class="border-white border-2 p-2">Submit</button>
 </form>
 
 
