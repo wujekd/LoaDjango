@@ -9,7 +9,7 @@
         writing-mode: vertical-rl;
         text-orientation: upright;
         z-index: 100;
-
+    }
 
 </style>
 
@@ -63,7 +63,7 @@
     
 
 {% comment %} <input type="range" id="volume" min="0" max="2" value="1" step="0.01" class="w-full h-2 bg-red-200 rounded-lg appearance-none cursor-pointer range-lg p-3 m-4" /> {% endcomment %}
-
+<div id="playing-state" class="absolute top-10 text-white">start</div>
 <div class="pb-20">
 {% comment %} SAMPLES SAMPLES SAMMPLES {% endcomment %}
 {% for tune in tunes %}
@@ -100,23 +100,13 @@
     </div>
 
     {% comment %} VOLUMES VOLUMES VOLUMES VOLUMES {% endcomment %}
-<div class="flex items-center justify-center space-x-0">
-    {% comment %} <div class="flex w-1/6">
-        <span class="vertext text-white">ORIGINAL</span>
-        <div class="bg-red-100 overflow-hidden rounded relative w-4 flex justify-center">
-            <div style="height: 54%" class="bg-red-600 px-2 absolute bottom-0"></div>
+<div class="flex items-center justify-center">
+
+        <div class="flex items-center">
+            <span class="vertext text-white">VOLUME</span>
+
         </div>
-    </div> {% endcomment %}
-    <div class="flex items-center">
-        <span class="vertext text-white">VOLUME</span>
-
-
-        {% comment %} <div id="volume-container" class="bg-red-100 overflow-hidden rounded relative w-4">
-            <div id="volume" style="height: 100%" class="bg-red-600 px-2 absolute bottom-0"></div>
-        </div> {% endcomment %}
-
-    </div>
-    <input type="range" style="transform: rotate(-90deg); transform-origin: 50% 50%;" id="volume" min="0" max="1" value="1" step="0.01" class="range-slider w-1/2 bg-red-500">
+        <input type="range" style="transform: rotate(-90deg); transform-origin: 50% 50%;" id="volume" min="0" max="1" value="1" step="0.01" class="range-slider w-1/2 bg-red-500">
 
     </div>
 
@@ -134,8 +124,8 @@
 
 {% comment %} times  {% endcomment %}
 <div class="text-white flex justify-between w-full text-sm tracking-wide mb-px">
-    <p id="current-time">3:12</p>
-    <p id="duration">5:14</p>
+    <p id="current-time"></p>
+    <p id="duration"></p>
 </div>
 
 {% comment %} controls {% endcomment %}
