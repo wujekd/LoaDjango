@@ -31,7 +31,9 @@ class SongResposes(models.Model):
     info = models.TextField(max_length=150)
     date = models.DateField(auto_now_add=True)
     audio = models.FileField(upload_to='music')
-    song = models.ForeignKey(Songs, on_delete=models.CASCADE)
+    song = models.ForeignKey(Songs, on_delete=models.CASCADE, related_name='responses')
+    approved = models.BooleanField(default=False)
+    volumeOffset = models.FloatField(null=True)
     
     def __str__(self):
         return f"{self.title}"
