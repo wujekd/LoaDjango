@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404,redirect
 from .models import Tunes, Songs, SongResposes
 from django.db.models import Prefetch
 
@@ -10,6 +10,8 @@ def player1(request):
     tunes = Tunes.objects.all()
     return render(request, 'player1.html', {'tunes' : tunes})
 
+
+
 def player2(request, pk):
     song = Songs.objects.get(pk=pk)
     responses = SongResposes.objects.filter(song=song)
@@ -18,6 +20,7 @@ def player2(request, pk):
         "song" : song,
         "responses" : responses,
     })
+    
     
     
 def unchecked_subs(request):
@@ -38,5 +41,23 @@ def unchecked_subs(request):
 
 
 
+from .forms import ResponseForm
+
 def check(request, pk):
-    pass
+    response = get_object_or_404(SongResposes, pk=pk)
+    song = response.song
+
+    if request.method == 'POST':
+        form = ResponseForm(request.POST, instance=response)
+        if form.is_valid():
+            form.save()
+            return redirect('check')  # Redirect to a success page
+    else:
+        form = ResponseForm(instance=response)
+
+    context = {
+        'response': response,
+        'song': song,
+        'form': form
+    }
+    return render(request, 'check-sub.html', context)

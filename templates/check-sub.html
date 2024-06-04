@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block content %}
+
+<script src="{% static 'check-sub.js' %}" defer></script>
+<audio src="{{ song.audio.url }}" id="backging"></audio>
+<audio src="{{ response.audio.url }}" id="submitted"></audio>
+
+<button id="play" class="border-white border-2 p-3">PLAY</button>
+
+
+<div id="info">{{ form.volumeOffset.value }}</div>
+
+<form method="post">
+    {% csrf_token %}
+    <div>
+        <label for="id_volumeOffset">Adjust Volume:</label>
+        <input type="range" name="volumeOffset" id="id_volumeOffset" value="
+        {% if form.volumeOffset.value %}
+        {{ form.volumeOffset.value }}
+        {% else %}
+        1
+        {% endif %}" min="0" max="2" step="0.1">
+    </div>
+    <div>
+        <label for="id_approved">Approve:</label>
+        <input type="checkbox" name="approved" id="id_approved" {% if form.approved.value %}checked{% endif %}>
+    </div>
+    <button type="submit">Submit</button>
+</form>
+
+
+{% endblock %}
