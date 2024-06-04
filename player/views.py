@@ -61,3 +61,10 @@ def check(request, pk):
         'form': form
     }
     return render(request, 'check-sub.html', context)
+
+
+def submit(request, pk):
+    song = get_object_or_404(Songs, pk=pk)
+    return render(request, "submit.html", {
+        "song" : song
+    })

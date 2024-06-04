@@ -17,7 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from uploads.views import main_view
-from player.views import player1, player2, unchecked_subs, check
+from player.views import player1, player2, unchecked_subs, check, submit
 
 from django.conf.urls.static import static
 from django.conf import settings
@@ -30,7 +30,8 @@ urlpatterns = [
     path('player2/<pk>', player2, name="player2"),
     path("check", unchecked_subs, name="check"),
     path('check/<pk>', check, name="check-sub"),
-    
+    path("submit/<pk>", submit, name="submit"),
+        
     path('__reload__/', include('django_browser_reload.urls')),
 ]
 

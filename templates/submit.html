@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block content %}
+
+
+
+<script src="{% static 'submit.js' %}" defer></script>
+
+<input type="file" id="userAudio" accept="audio/*">
+
+
+<audio src="" id="response" class="p-2" controls></audio>
+
+
+<audio src="{{ song.audio.url }}" controls></audio>
+
+
+
+
+{% endblock %}
