@@ -34,6 +34,8 @@ class SongResposes(models.Model):
     song = models.ForeignKey(Songs, on_delete=models.CASCADE, related_name='responses')
     approved = models.BooleanField(default=False)
     volumeOffset = models.FloatField(null=True, blank=True)
+    checked = models.BooleanField(default=False, null=True, blank=True)
+    modComment = models.TextField(max_length=150, null=True, blank=True)
     
     def __str__(self):
         return f"{self.title} - Approved: {self.approved} - Vol: {self.volumeOffset}"

@@ -6,10 +6,35 @@ const audioSub = document.getElementById("submitted");
 const progSlider = document.getElementById("progress");
 let playing = false;
 
+const confirmBox = document.getElementById('confirm-box');
+const confirmBtn = document.getElementById('confirm-btn');
+const submitBtn = document.getElementById("submit");
+const warning = document.getElementById("warning");
+const cancel = document.getElementById("cancel");
+
+
+confirmBtn.addEventListener("click", ()=>{
+    boxHeight = confirmBox.offsetHeight;
+    confirmBox.style.display = 'none'
+    submitBtn.style.display = '';
+    warning.style.display = '';
+    warning.style.minHeight = boxHeight + 'px';
+    confirmBtn.style.display = "none";
+})
+
+cancel.addEventListener("click", function(e){
+    e.preventDefault();
+    confirmBox.style.display = ''
+    submitBtn.style.display = 'none';
+    warning.style.display = 'none';
+    confirmBtn.style.display = "";
+
+})
+
+
 
 function updateInfo(){
-    infoThing.textContent = volumeSlider.value
-    console.log("testy")
+    infoThing.textContent = volumeSlider.value;
 }
 
 volumeSlider.addEventListener("input", updateInfo)
@@ -33,10 +58,7 @@ audioBacking.addEventListener("timeupdate", updateProgress);
 
 function updateProgress(e) {
     const {duration, currentTime} = e.srcElement;
-    // console.log(duration)
-    // console.log(currentTime)
     const progress = (currentTime / duration);
-    console.log(progress)
     progSlider.value = progress;
 }
 
@@ -58,3 +80,4 @@ subGain.connect(audioContext.destination);
 volumeSlider.addEventListener('input', function(){
     subGain.gain.value = volumeSlider.value;
 })
+

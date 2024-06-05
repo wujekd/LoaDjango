@@ -51,6 +51,7 @@ def check(request, pk):
         form = ResponseForm(request.POST, instance=response)
         if form.is_valid():
             form.save()
+            print("form valid")
             return redirect('check')  # Redirect to a success page
     else:
         form = ResponseForm(instance=response)

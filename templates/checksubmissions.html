@@ -7,16 +7,23 @@
 
 
 {% if songs %}
+
+<div class="border-white border-2 items-between">
+
 {% for song in songs %}
 <div class="flex items-center">
 <h1 class="p-4">{{ song.title }}</h1>
-<ul  class="p-2 border-white border-2">
+<ul  class="p-2">
     {% for response in song.unapproved_responses %}
         <li class="p-1">{{ response.title }} by {{ response.author }}- id: {{ response.id }} <a href="{% url 'check-sub' response.id %}">check</a></li>
     {% endfor %}
 </ul>
 </div>
 {% endfor %}
+
+</div>
+
+
 {% else %}
 <h2>No unapproved submissions</h2>
 {% endif %}
