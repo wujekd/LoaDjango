@@ -45,6 +45,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if(audioBacking){
             audioBacking.pause();
             }
+            
             playing = false;
             playigStateInfo.textContent = "playing = false"
             changeButtonText(currentPlayingButton, '▶')
