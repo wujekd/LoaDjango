@@ -16,14 +16,11 @@ document.addEventListener('DOMContentLoaded', () => {
     source.connect(gainNode);
     gainNode.connect(audioContext.destination);
 
-    
+    const submitBtn = document.getElementById("submit-btn");
 
-
-const submitBtn = document.getElementById("submit-btn")
 //  FORM SUBMISSION 
     const submissionForm = document.getElementById("submissionForm");
-    const songId = submissionForm.getAttribute("data-song-id")
-    console.log(songId)
+    const songId = submissionForm.getAttribute("data-song-id");
 
     submissionForm.addEventListener("submit", (event) => {
         event.preventDefault();
@@ -111,13 +108,14 @@ const submitBtn = document.getElementById("submit-btn")
         submitBtn.classList.add("hover:bg-green-800")
         playButton.textContent = "PLAY";
 
+        responseAudio.addEventListener('error', (e) => {
+            console.error('Error loading audio:', e);
+        });
+    
 
     });
 
-    responseAudio.addEventListener('error', (e) => {
-        console.error('Error loading audio:', e);
-    });
-
+    
 
 
     backingAudio.addEventListener('timeupdate', updateProgress);

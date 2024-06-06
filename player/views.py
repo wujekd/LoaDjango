@@ -45,8 +45,6 @@ def submitAnswer(request):
     pass
 
 
-
-
 from .forms import ResponseForm
 
 def check(request, pk):

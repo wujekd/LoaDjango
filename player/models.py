@@ -30,7 +30,7 @@ class SongResposes(models.Model):
     author = models.CharField(max_length=30)
     info = models.TextField(max_length=150)
     date = models.DateField(auto_now_add=True)
-    audio = models.FileField(upload_to='music')
+    audio = models.FileField(upload_to='music/collab_responses')
     song = models.ForeignKey(Songs, on_delete=models.CASCADE, related_name='responses')
     approved = models.BooleanField(default=False)
     volumeOffset = models.FloatField(null=True, blank=True)
@@ -39,5 +39,5 @@ class SongResposes(models.Model):
     modComment = models.TextField(max_length=150, null=True, blank=True)
     
     def __str__(self):
-        return f"{self.title} - Approved: {self.approved} - Vol: {self.volumeOffset}"
+        return f"{self.id} - {self.title} - Approved: {self.approved} - Vol: {self.volumeOffset}"
     
