@@ -58,7 +58,7 @@ def check(request, pk):
         if form.is_valid():
             form.save()
             print("form valid")
-            return redirect('check')  # Redirect to a success page
+            return redirect('check') 
     else:
         form = ResponseForm(instance=response)
 
@@ -70,8 +70,29 @@ def check(request, pk):
     return render(request, 'check-sub.html', context)
 
 
+from django.http import JsonResponse
+from .forms import SongResponseForm
+
+
 def submit(request, pk):
     song = get_object_or_404(Songs, pk=pk)
+    
+    if request.method == 'POST':
+        
+        print(request.POST.keys())
+        
+        form = SongResponseForm(request.POST, request.FILES)
+        
+        if form.is_valid():
+            form.save()
+
+            return JsonResponse({'success': True})
+        else:
+            return JsonResponse({'success': False, 'errors': form.errors})
+
+    form = SongResponseForm()
+
     return render(request, "submit.html", {
-        "song" : song
+        "form" : form,
+        "song" : song,
     })
