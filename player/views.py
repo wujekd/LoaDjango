@@ -41,9 +41,6 @@ def unchecked_subs(request):
 
 
 
-def submitAnswer(request):
-    pass
-
 
 from .forms import ResponseForm
 
@@ -70,19 +67,21 @@ def check(request, pk):
 
 from django.http import JsonResponse
 from .forms import SongResponseForm
-
+import os
 
 def submit(request, pk):
     song = get_object_or_404(Songs, pk=pk)
     
     if request.method == 'POST':
         
-        print(request.POST.keys())
-        
         form = SongResponseForm(request.POST, request.FILES)
         
         if form.is_valid():
-            form.save()
+            
+            song_response = form.save()
+            with open('submissions_to_render_demos.txt', 'a') as f:
+                f.write(f"{song_response.id},{song_response.audio.path}\n")
+
 
             return JsonResponse({'success': True})
         else:

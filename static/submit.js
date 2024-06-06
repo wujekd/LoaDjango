@@ -9,7 +9,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const volumeOffsetField = document.getElementById("volumeOffset");
     const responseBox = document.getElementById("respBox");
 
-    
     const audioContext = new AudioContext();
     const gainNode = audioContext.createGain();
     const source = audioContext.createMediaElementSource(responseAudio);
@@ -22,15 +21,22 @@ document.addEventListener('DOMContentLoaded', () => {
     const submissionForm = document.getElementById("submissionForm");
     const songId = submissionForm.getAttribute("data-song-id");
 
-    submissionForm.addEventListener("submit", (event) => {
+    submissionForm.addEventListener("submit", async (event) => {
         event.preventDefault();
         const formData = new FormData(submissionForm);
-
-        fetch(`/submit/${songId}`, {
-            method: "POST",
-            body: formData
-        }).then(response => {
-            if (response.ok) {
+    
+        try {
+            const response = await axios.post(`/submit/${songId}`, formData, {
+                onUploadProgress: function(progressEvent) {
+                    if (progressEvent.lengthComputable) {
+                        const percentComplete = (progressEvent.loaded / progressEvent.total) * 100;
+                        // progressBar.value = percentComplete;
+                        console.log(percentComplete);
+                    }
+                }
+            });
+    
+            if (response.status === 200) {
                 submitBtn.replaceWith(createSuccessMessage());
                 // Optionally reset the form
                 submissionForm.reset();
@@ -38,12 +44,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Handle error
                 alert("Submission failed!");
             }
-        }).catch(error => {
+        } catch (error) {
             console.error('Error:', error);
             alert("Submission failed!");
-        });
-    })
-
+        }
+    });
 
 
     vol.addEventListener("input", function() {

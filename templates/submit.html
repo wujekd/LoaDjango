@@ -12,6 +12,10 @@
     var successUrl = "{% url 'check' %}";
 </script>
 
+<!-- Reference the main Axios script file -->
+<script src="{% static 'axios/dist/axios.js' %}"></script>
+
+
 <form class="flex flex-col w-4/5 items-center justify-center" id="submissionForm" 
 method="POST" enctype="multipart/form-data" data-song-id="{{ song.id }}">
     {% csrf_token %}
