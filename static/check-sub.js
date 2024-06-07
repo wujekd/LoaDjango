@@ -13,6 +13,9 @@ const warning = document.getElementById("warning");
 const cancel = document.getElementById("cancel");
 
 
+
+
+
 confirmBtn.addEventListener("click", ()=>{
     boxHeight = confirmBox.offsetHeight;
     confirmBox.style.display = 'none'
@@ -36,6 +39,12 @@ cancel.addEventListener("click", function(e){
 function updateInfo(){
     infoThing.textContent = volumeSlider.value;
 }
+
+
+function initiateSlider(){
+    volumeSlider.value = volumeOffset
+}
+initiateSlider()
 
 volumeSlider.addEventListener("input", updateInfo)
 

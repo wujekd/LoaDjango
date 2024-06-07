@@ -5,6 +5,7 @@
 {% block content %}
 
 <script src="{% static 'check-sub.js' %}" defer></script>
+<script>const volumeOffset = {{ response.volumeOffset }}</script>
 <audio src="{{ song.audio.url }}" id="backing"></audio>
 <audio src="{{ response.audio.url }}" id="submitted"></audio>
 

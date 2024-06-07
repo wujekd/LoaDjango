@@ -9,6 +9,7 @@
         writing-mode: vertical-rl;
         text-orientation: upright;
         z-index: 100;
+        font-size: 0.66rem;
     }
 
 </style>
@@ -87,13 +88,15 @@
 {% endfor %}
 </div>
 
-<div id="player" class="container fixed bottom-4 bg-black py-4 flex flex-col items-center px-6 border-white border-4 rounded-2xl overflow-hidden">
+<div id="player" class="container fixed bottom-4 bg-black flex pb-3 flex-col items-center px-6 border-white border-4 rounded-2xl overflow-hidden">
     <audio src="" id="audioAPI"></audio>
     <audio src="{{ song.audio.url }}" id="audio-backing"></audio>
 
 <div class="flex justify-evenly w-full mb-3">
     <div class="flex justif-evenly items-center w-full">
-        <img id="cover" src="{{ song.pic.url }}" alt="Cover Image" class="rounded h-40 w-40 mx-auto z-10" />
+        <img id="cover" src="{{ song.pic.url }}" alt="Cover Image"
+        style="height: 7rem;"
+        class="rounded mx-auto z-10" />
 <div class="px-7 w-full">
         <h2 id="title" class="text-white text-center mt-3 text-xl font-medium uppercase tracking-wide">Title</h2>
         <h3 id="author" class="text-gray-500 text-xl text-center leading-6 mb-6">Author</h3>

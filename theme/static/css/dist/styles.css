@@ -803,28 +803,20 @@ select {
   bottom: 1rem;
 }
 
+.left-4 {
+  left: 1rem;
+}
+
 .left-9 {
   left: 2.25rem;
 }
 
-.top-10 {
-  top: 2.5rem;
-}
-
-.left-20 {
-  left: 5rem;
-}
-
-.left-10 {
-  left: 2.5rem;
+.top-6 {
+  top: 1.5rem;
 }
 
 .top-8 {
   top: 2rem;
-}
-
-.left-8 {
-  left: 2rem;
 }
 
 .z-10 {
@@ -1102,11 +1094,6 @@ select {
   background-color: rgb(22 163 74 / var(--tw-bg-opacity));
 }
 
-.bg-red-100 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(254 226 226 / var(--tw-bg-opacity));
-}
-
 .bg-red-200 {
   --tw-bg-opacity: 1;
   background-color: rgb(254 202 202 / var(--tw-bg-opacity));
@@ -1182,12 +1169,25 @@ select {
   padding-bottom: 1rem;
 }
 
+.py-1 {
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+}
+
 .pb-20 {
   padding-bottom: 5rem;
 }
 
 .pt-4 {
   padding-top: 1rem;
+}
+
+.pb-2 {
+  padding-bottom: 0.5rem;
+}
+
+.pb-3 {
+  padding-bottom: 0.75rem;
 }
 
 .text-center {
