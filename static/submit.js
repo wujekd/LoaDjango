@@ -5,12 +5,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const playButton = document.getElementById("play");
     const progSlider = document.getElementById("progress");
     let playing = false;
+    const volumeContainer = document.getElementById("volume_container")
     const vol = document.getElementById("volume");
     const volumeOffsetField = document.getElementById("volumeOffset");
     const responseBox = document.getElementById("respBox");
 
     let fileLoaded = false
-
+    const loadingContainer = document.getElementById("loadingContainer");
+    const progressBar = document.getElementById("loadingBar");
     const audioContext = new AudioContext();
     const gainNode = audioContext.createGain();
     const source = audioContext.createMediaElementSource(responseAudio);
@@ -19,6 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const submitBtn = document.getElementById("submit-btn");
 
+
 //  FORM SUBMISSION 
     const submissionForm = document.getElementById("submissionForm");
     const songId = submissionForm.getAttribute("data-song-id");
@@ -26,13 +29,17 @@ document.addEventListener('DOMContentLoaded', () => {
     submissionForm.addEventListener("submit", async (event) => {
         event.preventDefault();
         const formData = new FormData(submissionForm);
+        const height = volumeContainer.offsetHeight;
+        loadingContainer.style.minHeight = height + 'px';
+        loadingContainer.style.display = 'block';
+        volumeContainer.style.display = "none";
     
         try {
             const response = await axios.post(`/submit/${songId}`, formData, {
                 onUploadProgress: function(progressEvent) {
                     if (progressEvent.lengthComputable) {
                         const percentComplete = (progressEvent.loaded / progressEvent.total) * 100;
-                        // progressBar.value = percentComplete;
+                        updateProgressBar(percentComplete)
                         submitBtn.textContent = `${Math.round(percentComplete)}%`; // Update text content
                     console.log(percentComplete);
                     }
@@ -40,9 +47,9 @@ document.addEventListener('DOMContentLoaded', () => {
             });
     
             if (response.status === 200) {
-                submitBtn.replaceWith(createSuccessMessage());
+                submitBtn.textContent = "SUCCESS!"
                 // Optionally reset the form
-                submissionForm.reset();
+                // submissionForm.reset();
             } else {
                 // Handle error
                 alert("Submission failed!");
@@ -52,6 +59,15 @@ document.addEventListener('DOMContentLoaded', () => {
             alert("Submission failed!");
         }
     });
+
+
+
+    function updateProgressBar(percent) {
+        loadingBar.style.width = percent + "%";
+
+    }
+
+
 
 
     vol.addEventListener("input", function() {

@@ -40,20 +40,25 @@ method="POST" enctype="multipart/form-data" data-song-id="{{ song.id }}">
         <input type="file" id="userAudio" name="audio" class="w-2/3 my-4" accept="audio/*" required>
         <button id="play" 
         class="border-2 border-white p-2 m-4 w-3/4 bg-gray-800 hover:bg-gray-700">Nothing to play...</button>
-        <input type="range" class="w-3/4 h-10" id="progress" value="0" min="0" max="1" step="0.01">
+        <input type="range" class="w-3/4 mb-3 h-10" id="progress" value="0" min="0" max="1" step="0.01">
 
-        <div id="loadingContainer">
-            <div id="loadingBar" style="width: 0%" class="bg-blue-500">tr</div>
+
+        <div id="loadingContainer" style="display: none; width: 100%; height:35px;" class="flex flex-col justify-center">
+            <div style="border: 1px solid #ccc;" class="rounded">
+            <div id="loadingBar" class="bg-green-600 rounded" style="height: 20px; width: 0%; transition: width 0.3s ease-in-out;"></div>
+            </div>
         </div>
 
-        <div id="volume_container" class="flex items-center">
+
+        <div id="volume_container" class="flex items-center" style="display: ">
             <label class="px-4 shrink" for="id_volumeOffset">Adjust Volume:</label>
             <input type="range" class="p-2" name="volumeOffset" id="volume" 
             value="1" min="0" max="2" step="0.01">
         </div>
+
     <div class="w-full flex items-center flex-col" id="respBox">
     <button type="submit" id="submit-btn" 
-    class="border-gray-800 border-2 p-3 m-4 w-2/3">Submit</button>
+    class="border-gray-800 border-2 p-3 m-4 mt-6 w-2/3">Submit</button>
     </div>
 </div>
 </form>
