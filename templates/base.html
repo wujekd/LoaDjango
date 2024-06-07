@@ -2,15 +2,20 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-    <title>Django Tailwind</title>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta http-equiv="X-UA-Compatible" content="ie=edge">
-		{% tailwind_css %}
-	</head>
+
+		<title>Django Stuff</title>
+			<meta charset="UTF-8">
+			<meta name="viewport" content="width=device-width, initial-scale=1.0">
+			<meta http-equiv="X-UA-Compatible" content="ie=edge">
+			{% tailwind_css %}
+		</head>
 
 	<body class="p-3 flex flex-col min-h-screen justify-center items-center bg-black text-white">
-        {% block content %}
+		
+		<a href="{% url 'ajax:index' %}"><button class="fixed left-8 top-8 px-6 py-2 bg-gray-900">Home</button></a>
+		
+		{% block content %}
         {% endblock content %}
 	</body>
+
 </html>

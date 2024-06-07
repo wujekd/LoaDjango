@@ -1,41 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ajax tut home page</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     
     {% load static %}
     {% load static tailwind_tags %}
     {% tailwind_css %}
+    
+    <style>
+        .home-links a, p {
+            margin-bottom: 1rem;
+            
+        }
+    </style>
 
     <script src="{% static 'dlrequest.js' %}" defer></script>
 </head>
+<body>
 
-
-
-<h1>List of live dataaa</h1>
+<div class="bg-gray-200 flex flex-col m-4 p-4 home-links">
+    <p>links:</p>
+    <a href="{% url 'check' %}">Check Page</a>
+    <a href="{% url 'submit' 1 %}">Submit with Parameter 1</a>
+    <a href="{% url 'player1' %}">Player 1</a>
+    <a href="{% url 'player2' 1 %}">Player 2 with Parameter 1</a>
+</div>
 
 <button id="getbtn" class="m-3">fetch</button>
 
 <div id="res"></div>
 
-<ul id="display">
-
-</ul>
+<ul id="display"></ul>
 
 <div class="p-6 mb-4 bg-gray-200 m-5">
-<div id="dynamic" style="transition: opacity 0.45s ease-in-out">
-    <h2>Download div</h2>
-     
-                <button id="dlbtn" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Download</button>
-
+    <div id="dynamic" style="transition: opacity 0.45s ease-in-out">
+        <h2>Download div</h2>
+        <button id="dlbtn" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Download</button>
+    </div>
 </div>
-</div>
-
 
 <script>
     const fetchURL = "{% url 'ajax:getData' %}"
 
     async function requestData() {
-        const resp = await fetch("{% url 'ajax:getData' %}");
+        const resp = await fetch(fetchURL);
         const read = await resp.json();
         let container = document.getElementById("display");
         container.innerHTML = ""
@@ -45,20 +57,18 @@
         for (profil of read.profiles){
             console.log(profil)
             const div = document.createElement("div");
-                const name = document.createElement("p");
-                name.textContent = profil.name; 
-                const bio = document.createElement("div");
-                bio.textContent = profil.bio;
-                div.appendChild(name);
-                div.appendChild(bio)
-                container.appendChild(div);
+            const name = document.createElement("p");
+            name.textContent = profil.name; 
+            const bio = document.createElement("div");
+            bio.textContent = profil.bio;
+            div.appendChild(name);
+            div.appendChild(bio)
+            container.appendChild(div);
         }
     }
 
     document.getElementById("getbtn").addEventListener("click", requestData);
-
-
-
-
-
 </script>
+
+</body>
+</html>

@@ -28,3 +28,5 @@
 44,/Users/dw/Documents/CODING/loadjango/loadjango/media/music/collab_responses/rudi__vox1_3UauAty.mp3
 45,/Users/dw/Documents/CODING/loadjango/loadjango/media/music/collab_responses/rudi__vox1_K8V4Q7Y.mp3
 46,/Users/dw/Documents/CODING/loadjango/loadjango/media/music/collab_responses/rudi__vox2_2TvLz1k.mp3
+47,/Users/dw/Documents/CODING/loadjango/loadjango/media/music/collab_responses/demo1_.wav
+48,/Users/dw/Documents/CODING/loadjango/loadjango/media/music/collab_responses/rudi__vox1_o9CBVn5.mp3
