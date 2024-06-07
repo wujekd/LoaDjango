@@ -2,3 +2,11 @@
 18,/Users/dw/Documents/CODING/loadjango/loadjango/media/music/collab_responses/rudi__vox1_qKT73mj.mp3
 19,/Users/dw/Documents/CODING/loadjango/loadjango/media/music/collab_responses/rudi__vox1_fFgMJs4.mp3
 20,/Users/dw/Documents/CODING/loadjango/loadjango/media/music/collab_responses/rudi__vox1_tVpddfU.mp3
+21,/Users/dw/Documents/CODING/loadjango/loadjango/media/music/collab_responses/rudi__vox2_qOAPIVU.mp3
+22,/Users/dw/Documents/CODING/loadjango/loadjango/media/music/collab_responses/rudi__vox1_fE0qjNB.mp3
+23,/Users/dw/Documents/CODING/loadjango/loadjango/media/music/collab_responses/rudi__vox2_Hs3mgEE.mp3
+24,/Users/dw/Documents/CODING/loadjango/loadjango/media/music/collab_responses/rudi__vox2_pheDogF.mp3
+25,/Users/dw/Documents/CODING/loadjango/loadjango/media/music/collab_responses/rudi__vox2_yLrjew5.mp3
+26,/Users/dw/Documents/CODING/loadjango/loadjango/media/music/collab_responses/rudi__vox2_WxjI9J9.mp3
+27,/Users/dw/Documents/CODING/loadjango/loadjango/media/music/collab_responses/rudi__vox2_RkhgPIC.mp3
+28,/Users/dw/Documents/CODING/loadjango/loadjango/media/music/collab_responses/rudi__vox1_aRx6BFt.mp3

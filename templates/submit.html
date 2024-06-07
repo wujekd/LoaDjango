@@ -39,17 +39,21 @@ method="POST" enctype="multipart/form-data" data-song-id="{{ song.id }}">
     <div class='p-2 flex flex-col w-full justify-center items-center'>
         <input type="file" id="userAudio" name="audio" class="w-2/3 my-4" accept="audio/*" required>
         <button id="play" 
-        class="border-2 border-white p-2 m-4 w-3/4 bg-gray-800 hover:bg-gray-700">ADD YOUR FILE</button>
+        class="border-2 border-white p-2 m-4 w-3/4 bg-gray-800 hover:bg-gray-700">Nothing to play...</button>
         <input type="range" class="w-3/4 h-10" id="progress" value="0" min="0" max="1" step="0.01">
 
-        <div class="flex items-center">
+        <div id="loadingContainer">
+            <div id="loadingBar" style="width: 0%" class="bg-blue-500">tr</div>
+        </div>
+
+        <div id="volume_container" class="flex items-center">
             <label class="px-4 shrink" for="id_volumeOffset">Adjust Volume:</label>
             <input type="range" class="p-2" name="volumeOffset" id="volume" 
             value="1" min="0" max="2" step="0.01">
         </div>
     <div class="w-full flex items-center flex-col" id="respBox">
     <button type="submit" id="submit-btn" 
-    class="border-green-200 border-2 p-3 m-4 w-2/3">No file selected</button>
+    class="border-gray-800 border-2 p-3 m-4 w-2/3">Submit</button>
     </div>
 </div>
 </form>

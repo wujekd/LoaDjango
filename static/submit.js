@@ -9,6 +9,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const volumeOffsetField = document.getElementById("volumeOffset");
     const responseBox = document.getElementById("respBox");
 
+    let fileLoaded = false
+
     const audioContext = new AudioContext();
     const gainNode = audioContext.createGain();
     const source = audioContext.createMediaElementSource(responseAudio);
@@ -31,7 +33,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (progressEvent.lengthComputable) {
                         const percentComplete = (progressEvent.loaded / progressEvent.total) * 100;
                         // progressBar.value = percentComplete;
-                        console.log(percentComplete);
+                        submitBtn.textContent = `${Math.round(percentComplete)}%`; // Update text content
+                    console.log(percentComplete);
                     }
                 }
             });
@@ -61,17 +64,18 @@ document.addEventListener('DOMContentLoaded', () => {
     playButton.addEventListener("click", (e) => {
 
         e.preventDefault();
-
-        if (playing) {
-            responseAudio.pause();
-            backingAudio.pause();
-            playButton.textContent = "PLAY";
-            playing = false;
-        } else {
-            responseAudio.play();
-            backingAudio.play();
-            playButton.textContent = "PAUSE";
-            playing = true;
+        if (fileLoaded){
+            if (playing) {
+                responseAudio.pause();
+                backingAudio.pause();
+                playButton.textContent = "PLAY";
+                playing = false;
+            } else {
+                responseAudio.play();
+                backingAudio.play();
+                playButton.textContent = "PAUSE";
+                playing = true;
+            }
         }
     });
 
@@ -97,6 +101,8 @@ document.addEventListener('DOMContentLoaded', () => {
             responseAudio.load();
             backingAudio.currentTime = 0;
             progSlider.value = 0;
+            fileLoaded = true;
+            submitBtn.style.backgroundColor = 'green'
 
 
         }
