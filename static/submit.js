@@ -28,6 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     submissionForm.addEventListener("submit", async (event) => {
         event.preventDefault();
+        submitBtn.disabled = true;
         const formData = new FormData(submissionForm);
         const height = volumeContainer.offsetHeight;
         loadingContainer.style.minHeight = height + 'px';
@@ -47,9 +48,14 @@ document.addEventListener('DOMContentLoaded', () => {
             });
     
             if (response.status === 200) {
-                submitBtn.textContent = "SUCCESS!"
-                // Optionally reset the form
-                // submissionForm.reset();
+                submitBtn.textContent = "SUCCESS! Click to continue...";
+                submitBtn.addEventListener("click", (e)=>{
+                    e.preventDefault();
+                    window.location.href = successUrl;
+
+                })
+                submitBtn.disabled = false;
+
             } else {
                 // Handle error
                 alert("Submission failed!");
@@ -96,17 +102,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 
-    function createSuccessMessage() {
-        const successButton = document.createElement("button");
-        successButton.classList.add("p-3", "bg-green-900", "border", "border-green-400", "rounded", "px-4", "py-2", "mt-4", "hover:bg-green-700");
-        successButton.textContent = "Submission successful! Click to continue";
-        successButton.addEventListener("click", () => {
-            window.location.href = successUrl;
-        });
-    
-        return successButton;
-    }
-    
 
 
     userAudioInput.addEventListener('change', function(event) {
