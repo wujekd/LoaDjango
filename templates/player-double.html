@@ -66,7 +66,7 @@
 {% comment %} <input type="range" id="volume" min="0" max="2" value="1" step="0.01" class="w-full h-2 bg-red-200 rounded-lg appearance-none cursor-pointer range-lg p-3 m-4" /> {% endcomment %}
 
 <div class="pb-20">
-{% comment %} SAMPLES SAMPLES SAMMPLES {% endcomment %}
+{% comment %} RESPONSES RESPONSES REPONSES {% endcomment %}
 {% for response in responses %}
 <div class="text-white flex border-white border-2">
     <div class="p-4">
@@ -74,10 +74,14 @@
     </div>
     <div class="p-4">
     {{ response.author }}
+    <p>{{ response.demo_file_url }}</p>
+
+    <p>{{ response.audio.url }}</p>
     </div>
     <div class="p-4">
-        <button data-audio-url="{{ response.audio.url }}" pic-url="{{ tune.pic.url }}" 
-        audio-name="{{ response.title }}" data-vol-offset="{{ response.volumeOffset }}" author="{{ response.author }}" 
+        <button data-audio-url="{{ response.demo_file_url }}" pic-url="{{ tune.pic.url }}" 
+        audio-name="{{ response.title }}" data-vol-offset="{{ response.volumeOffset }}" 
+        author="{{ response.author }}" 
         class="pick-btn rounded-xl relative bg-teal-600 w-20 relative overflow-hidden">
             <div style="width: 0%" class="absolute h-6 bg-red-600 py-2"></div>
             <span class="btn-txt relative">▶</span>
@@ -87,6 +91,7 @@
 </div>
 {% endfor %}
 </div>
+
 
 <div id="player" class="container fixed bottom-4 bg-black flex pb-3 flex-col items-center px-6 border-white border-4 rounded-2xl overflow-hidden">
     <audio src="" id="audioAPI"></audio>

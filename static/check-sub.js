@@ -6,12 +6,12 @@ const audioSub = document.getElementById("submitted");
 const progSlider = document.getElementById("progress");
 let playing = false;
 
+
 const confirmBox = document.getElementById('confirm-box');
 const confirmBtn = document.getElementById('confirm-btn');
 const submitBtn = document.getElementById("submit");
 const warning = document.getElementById("warning");
 const cancel = document.getElementById("cancel");
-
 
 
 
@@ -33,8 +33,6 @@ cancel.addEventListener("click", function(e){
     confirmBtn.style.display = "";
 
 })
-
-
 
 function updateInfo(){
     infoThing.textContent = volumeSlider.value;

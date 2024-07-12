@@ -31,6 +31,7 @@ class SongResposes(models.Model):
     info = models.TextField(max_length=150)
     date = models.DateField(auto_now_add=True)
     audio = models.FileField(upload_to='music/collabs/responses')
+    demo_file_url = models.CharField(max_length=200, null=True, blank=True)
     song = models.ForeignKey(Songs, on_delete=models.CASCADE, related_name='responses')
     approved = models.BooleanField(default=False)
     volumeOffset = models.FloatField(null=True, blank=True)
